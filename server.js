@@ -1,5 +1,6 @@
-const app = require('./app')
+const express = require('express');
+const server = express();
 
-app.listen(3050,() => {
+server.listen(3050, () =>{
     console.log("Ecoute sur le port 3050");
 });
