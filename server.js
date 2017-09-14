@@ -1,8 +1,6 @@
 const express = require('express');
 const server = express();
 
-const server = express();
-
 server.get('/bonjour',(req,res)=>{
     res.send({result:'Un resultat'})
 });
