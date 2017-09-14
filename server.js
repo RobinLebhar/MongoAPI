@@ -1,6 +1,5 @@
 const express = require('express');
 const server = express();
-const express = require('express');
 
 const server = express();
 
