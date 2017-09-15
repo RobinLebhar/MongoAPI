@@ -1,10 +1,11 @@
 const express = require('express');
+const routes = require('./routes/index')
+
 const server = express();
 
-server.get('/bonjour',(req,res)=>{
-    res.send({result:'Un resultat'})
-});
+routes(server);
 
 server.listen(3050, () =>{
     console.log("Ecoute sur le port 3050");
 });
+    
