@@ -17,7 +17,7 @@ UserSchema.virtual('countMovies').get(function() {
 
 
 UserSchema.pre('remove',function(next) {
-  BlogBook.remove({_id: {$in : this.movies}}).then(() => {
+  Movie.remove({_id: {$in : this.movies}}).then(() => {
     next();
   });
   
