@@ -1,4 +1,6 @@
 const User = require('../models/users');
+const Movie = require('../models/movies');
+
 module.exports = {
     
     readAll (req,res) {
@@ -14,10 +16,14 @@ module.exports = {
        
     },
     create(req,res){
-        const body = req.body;
-        const user = new User({name:body.name});
+        const name = req.body.name;
+        const age = req.body.age;
+        const user = new User({name, age});
+        const movie = new Movie({title:"movie test",duration:'999'})
+        user.movies.push(movie);
             user.save().then(() => {
-                res.send({user});
+               movie.save().then(()=>{ res.send({user});});
+              
             });
     },
         
@@ -25,7 +31,6 @@ module.exports = {
          const id = req.body.id;
          User.findByIdAndRemove({_id:id}).then( (user) =>{
              res.send({user});
-         });
-       
+         }); 
     }
 };
