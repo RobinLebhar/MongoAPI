@@ -4,6 +4,7 @@ module.exports = (server) => {
     server.get('/users',UserController.readAll);
     server.get('/user/:id',UserController.read);
     server.post('/user',UserController.create);
+    server.delete('/user',UserController.delete)
 }
 
 

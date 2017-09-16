@@ -8,8 +8,10 @@ const UserSchema = new Schema({
   movies:[{
     type : Schema.Types.ObjectId, 
     ref: 'movie'
-  }]
-});
+  }],
+   
+}, {versionKey: false} 
+);
 
 UserSchema.virtual('countMovies').get(function() {
   return this.movies.length;
