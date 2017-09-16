@@ -32,25 +32,5 @@ module.exports = {
          User.findByIdAndRemove({_id:id}).then( (user) =>{
              res.send({user});
          }); 
-    },
-
-    oldest(req,res){
-        User.find().sort({'age':-1}).limit(2).then( (user) => {
-             res.send({user});
-        });
-    },
-
-     youngest(req,res){
-        User.find().sort({'age':1}).limit(2).then( (user) => {
-             res.send({user});
-        });
-    },
-
-    hasLongestMovie(req,res){
-        User.findOne({},'name') // On ne recupera que le nom du user
-        .populate({path: 'movies', options: { sort: { 'duration': -1 } } })
-        .then( (user) => {
-            res.send({user});
-        })
-    },
+    }
 };
