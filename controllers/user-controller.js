@@ -8,7 +8,7 @@ module.exports = {
     },
     read (req,res) {
         const id = req.params.id;
-        User.findById().then( (user) => {
+        User.findById({_id:id}).then( (user) => {
              res.send({user});
         })
        
