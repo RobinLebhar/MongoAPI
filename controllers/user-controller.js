@@ -45,12 +45,24 @@ module.exports = {
              res.send({user});
         });
     },
-
+    
     hasLongestMovie(req,res){
-        User.findOne({},'name') // On ne recupera que le nom du user
-        .populate({path: 'movies', options: { sort: { 'duration': -1 } } })
-        .then( (user) => {
-            res.send({user});
-        })
-    },
+            User.aggregate([
+                { "$unwind": "$movies" } ,
+                { $lookup:
+                    {from: "MOVIE_COLLEC",
+                    localField: "movies",
+                    foreignField: "_id",
+                    as: "movieContent"},
+                } ,
+                 { $unwind: "$movieContent" },
+                 {$sort: {"movieContent.duration":-1}},
+                 { $project: {  "User name":"$name","Movie title" : "$movieContent.title","Duration of movie" : "$movieContent.duration"}  }  ,
+                 { $limit : 1 }
+
+            ])
+            .then( (result)=> {
+                res.send(result)
+            })
+    }
 };
