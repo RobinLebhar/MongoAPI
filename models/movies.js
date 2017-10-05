@@ -10,7 +10,7 @@ const movieSchema = new Schema({
          type : Number
      }
 
-}, {versionKey: false} );
+},{collection: "MOVIE_COLLEC"});
 
 const Movie = mongoose.model('movie',movieSchema);
 
