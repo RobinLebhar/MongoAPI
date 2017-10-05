@@ -1,4 +1,4 @@
-const mongoose = require('mongoose');
+ààconst mongoose = require('mongoose');
 const Movie = require('./movies');
 const Schema = mongoose.Schema;
 
@@ -10,8 +10,7 @@ const UserSchema = new Schema({
     ref: 'movie'
   }],
    
-}, {versionKey: false} 
-);
+},{collection: "USER_COLLEC"});
 
 UserSchema.virtual('countMovies').get(function() {
   return this.movies.length;
